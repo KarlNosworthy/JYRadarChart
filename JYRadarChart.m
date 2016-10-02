@@ -41,6 +41,11 @@
     return self;
 }
 
+- (void)prepareForInterfaceBuilder {
+    [self setDefaultValues];
+    [self setNeedsDisplay];
+}
+
 - (void)setDefaultValues {
     self.backgroundColor = [UIColor whiteColor];
     _maxValue = 100.0;
@@ -59,13 +64,15 @@
     _legendView = [[JYLegendView alloc] init];
     _legendView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
     _legendView.backgroundColor = [UIColor clearColor];
-    _legendView.colors = [NSMutableArray array];
+    _legendView.colors = [NSMutableArray arrayWithObjects:[UIColor orangeColor], nil];
     _attributes = @[@"you", @"should", @"set", @"these", @"data", @"titles,",
                         @"this", @"is", @"just", @"a", @"placeholder"];
 
     _scaleFont = [UIFont systemFontOfSize:ATTRIBUTE_TEXT_SIZE];
     
     _clockwise = YES;
+    
+    [self setDataSeries:@[@[@(10),@(20),@(30),@(40),@(50),@(23),@(11),@(91),@(65),@(71),@(8)]]];
 }
 
 - (void)setShowLegend:(BOOL)showLegend {
@@ -114,13 +121,24 @@
 	}
 }
 
+/*
+- (void)setCenterPoint:(CGPoint)centerPoint {
+    _centerPoint = centerPoint;
+    [self setNeedsDisplay];
+}
+*/
+
 - (void)layoutSubviews {
+//    _centerPoint = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
+    
 	[self.legendView sizeToFit];
 	CGRect r = self.legendView.frame;
 	r.origin.x = self.frame.size.width - self.legendView.frame.size.width - LEGEND_PADDING;
 	r.origin.y = LEGEND_PADDING;
 	self.legendView.frame = r;
 	[self bringSubviewToFront:self.legendView];
+    
+    [super layoutSubviews];
 }
 
 - (void)drawRect:(CGRect)rect {
