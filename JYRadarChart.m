@@ -60,6 +60,7 @@
     _colorOpacity = 1.0;
     _backgroundLineColorRadial = [UIColor darkGrayColor];
     _backgroundFillColor = [UIColor whiteColor];
+    _stepLineColor = [UIColor lightGrayColor];
 
     _legendView = [[JYLegendView alloc] init];
     _legendView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -193,7 +194,7 @@
 	//draw steps line
 	//static CGFloat dashedPattern[] = {3,3};
 	//TODO: make this color a variable
-	[[UIColor lightGrayColor] setStroke];
+	[_stepLineColor setStroke];
 	CGContextSaveGState(context);
 	for (int step = 1; step <= _steps; step++) {
 		for (int i = 0; i <= _numOfV; ++i) {

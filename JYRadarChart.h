@@ -27,6 +27,8 @@ IB_DESIGNABLE
 @property (nonatomic, strong) IBInspectable UIColor *backgroundFillColor;
 @property (nonatomic) IBInspectable NSUInteger attributeFontSize;
 
+@property (nonatomic) IBInspectable UIColor* stepLineColor;
+
 @property (nonatomic, assign) IBInspectable BOOL clockwise; //direction of data
 
 - (void)setTitles:(NSArray *)titles;
