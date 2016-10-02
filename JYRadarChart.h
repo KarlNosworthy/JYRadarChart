@@ -25,6 +25,7 @@ IB_DESIGNABLE
 @property (nonatomic, assign) IBInspectable NSUInteger steps;
 @property (nonatomic, assign) CGPoint centerPoint;
 @property (nonatomic, strong) IBInspectable UIColor *backgroundFillColor;
+@property (nonatomic) IBInspectable NSUInteger attributeFontSize;
 
 @property (nonatomic, assign) IBInspectable BOOL clockwise; //direction of data
 

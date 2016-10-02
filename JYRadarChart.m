@@ -68,7 +68,8 @@
     _attributes = @[@"you", @"should", @"set", @"these", @"data", @"titles,",
                         @"this", @"is", @"just", @"a", @"placeholder"];
 
-    _scaleFont = [UIFont systemFontOfSize:ATTRIBUTE_TEXT_SIZE];
+    _attributeFontSize = ATTRIBUTE_TEXT_SIZE;
+    _scaleFont = [UIFont systemFontOfSize:_attributeFontSize];
     
     _clockwise = YES;
     
@@ -87,6 +88,12 @@
 			}
 		}
 	}
+}
+
+- (void)setAttributeFontSize:(NSUInteger)attributeFontSize {
+    _attributeFontSize = attributeFontSize;
+    _scaleFont = [UIFont systemFontOfSize:_attributeFontSize];
+    [self setNeedsDisplay];
 }
 
 - (void)setTitles:(NSArray *)titles {
@@ -121,16 +128,7 @@
 	}
 }
 
-/*
-- (void)setCenterPoint:(CGPoint)centerPoint {
-    _centerPoint = centerPoint;
-    [self setNeedsDisplay];
-}
-*/
-
 - (void)layoutSubviews {
-//    _centerPoint = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
-    
 	[self.legendView sizeToFit];
 	CGRect r = self.legendView.frame;
 	r.origin.x = self.frame.size.width - self.legendView.frame.size.width - LEGEND_PADDING;
